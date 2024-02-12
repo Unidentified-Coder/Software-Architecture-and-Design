@@ -1,13 +1,10 @@
 # Software-Architecture-and-Design
 
-
-This is just a test to see if this file is working correctly
-
-
 CODE OF CONDUCT:
 
-Rodas Samson Gebrtensea
-Kaue Goncalves Ravagnani
+Memebers: 
+Rodas Samson Gebrtensea,
+Kaue Goncalves Ravagnani,
 Rigers Bushi    
 
 Professionalism: 
@@ -37,14 +34,11 @@ Participants must uphold the principles of academic integrity and avoid any form
 Adherence to Policies: 
 Participants must comply with all relevant policies and regulation
 Failure to do so will result in a 3 strike system which will bw as followed:
-1st £20 fine
-2nd £50 fine
-3rd Resignation of the team
-
 
 Communication
 This will play a big factor on how we develop as a team and how going forward
 
-To the names above this concerns these rules are in place to be abided by and understood failure to do so will result in a strike system with each strike being progressively harsher#
-
-
+To the names above this concerns these rules are in place to be abided by and understood failure to do so will result in a strike system with each strike being progressively harsher
+1st £20 fine
+2nd £50 fine
+3rd Resignation of the team
