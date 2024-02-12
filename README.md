@@ -1,11 +1,11 @@
 # Software-Architecture-and-Design
 
-CODE OF CONDUCT:
-
 Memebers: 
 Rodas Samson Gebrtensea,
 Kaue Goncalves Ravagnani,
-Rigers Bushi    
+Rigers Bushi 
+
+CODE OF CONDUCT:   
 
 Professionalism: 
 All participants are expected to conduct themselves in a professional manner at all times. This includes respectful communication, meeting deadlines, and collaborating effectively with team members.  
