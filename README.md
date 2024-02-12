@@ -39,6 +39,7 @@ Communication
 This will play a big factor on how we develop as a team and how going forward
 
 To the names above this concerns these rules are in place to be abided by and understood failure to do so will result in a strike system with each strike being progressively harsher
-1st £20 fine
-2nd £50 fine
+
+1st £20 fine,
+2nd £50 fine,
 3rd Resignation of the team
