@@ -32,6 +32,8 @@ Punishment - To the names above this concerns these rules are in place to be abi
 
 3rd strike - Resignation of the team (And is required to inform the instructor as to why this has happened)
 
+
+
 Signed by;
 
 Rodas Samson Gebrtensea
