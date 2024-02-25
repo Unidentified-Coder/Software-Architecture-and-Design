@@ -1,7 +1,11 @@
+import java.util.Scanner;
+
 class Main {
     public static void main(String[] args){
-        viewInfo myInfo = new viewInfo();
-        myInfo.scoutInfo();
-    }
-    
+        Scanner myObj = new Scanner(System.in);
+        System.out.println("Enter Username: ");
+
+        String userName = myObj.nextLine();
+        System.out.println("Welcome: " + userName);
+    }    
 }
