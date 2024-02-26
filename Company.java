@@ -13,6 +13,7 @@ class Company implements Server {
     }
     
     public void StockExchange(){
+        System.out.println("Currently the stock exchange is £1 ∼ $3.545");
         
     }
 
