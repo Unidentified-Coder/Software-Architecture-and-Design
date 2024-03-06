@@ -28,7 +28,7 @@ class Company implements Server {
     }
 
     public void Index(){
-        
+        System.out.println("Currently the stocks that are up are : Google\\n");
     }
     
 }
