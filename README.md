@@ -24,6 +24,8 @@ Communication: This will play a big factor on how we develop as a team and how g
 
 Team Meeting - They will be held once a week on sundays in order for us to look over everything and ensure everything is in order and all members know what their task is.
 
+Team Meeting discusssion - The application we use are discord and and Whatsapp to communicate and sheducle meetings which will take place on sundays during the evening to get the general idea for the week ahead.
+
 Punishment - To the names above this concerns these rules are in place to be abided by and understood failure to do so will result in a strike system with each strike being progressively harsher;
 
 1st strike - £20 fine
@@ -32,10 +34,14 @@ Punishment - To the names above this concerns these rules are in place to be abi
 
 3rd strike - Resignation of the team (And is required to inform the instructor as to why this has happened)
 
+
+
 Signed by;
 
 Rodas Samson Gebrtensea
 
 Kaue Goncalves Ravagnani
 
-Rigers Bushi
+Rigers Bushi 
+
+Haris Sabir 
