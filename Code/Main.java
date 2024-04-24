@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -44,10 +45,10 @@ public class Main {
             System.out.println("2. Withdraw Money");
             System.out.println("3. View Purchase History");
             System.out.println("4. Exit Wallet");
-
+    
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
-
+    
             switch (choice) {
                 case 1:
                     System.out.print("Enter amount to deposit: $");
@@ -61,8 +62,13 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Purchase History:");
-                    for (String transaction : user.viewTransactionHistory()) {
-                        System.out.println(transaction);
+                    List<String> transactions = user.viewTransactionHistory();
+                    if (transactions.isEmpty()) {
+                        System.out.println("No transactions yet.");
+                    } else {
+                        for (String transaction : transactions) {
+                            System.out.println(transaction);
+                        }
                     }
                     break;
                 case 4:
@@ -96,7 +102,12 @@ public class Main {
                     }
                     System.out.print("Enter quantity to buy: ");
                     int quantityToBuy = scanner.nextInt();
-                    exchange.buyStock(buySymbol, quantityToBuy, user);
+                    Stock stockToBuy = exchange.getStock(buySymbol);
+                    if (stockToBuy == null) {
+                        System.out.println("Invalid stock symbol.");
+                        break;
+                    }
+                    System.out.println(user.purchaseStock(stockToBuy, quantityToBuy));
                     break;
                 case 2:
                     // Sell stock
@@ -111,7 +122,7 @@ public class Main {
                     }
                     System.out.print("Enter quantity to sell: ");
                     int quantityToSell = scanner.nextInt();
-                    exchange.sellStock(sellSymbol, quantityToSell, user);
+                    System.out.println(user.sellStock(sellSymbol, quantityToSell));
                     break;
                 case 3:
                     System.out.println("Exiting Stock Market...");
