@@ -14,31 +14,37 @@ public class Main {
         userCredentials.put("user3", "password3");
 
         // Add users
-        users.put("user1", new User("John Doe", 1000.00));
-        users.put("user2", new User("Jane Smith", 1500.00));
-        users.put("user3", new User("Alice Johnson", 2000.00));
+        users.put("user1", new User("John Doe", 100000.00));
+        users.put("user2", new User("Jane Smith", 150000.00));
+        users.put("user3", new User("Alice Johnson", 200000.00));
 
         Scanner scanner = new Scanner(System.in);
+        boolean loggedIn = false;
+        User currentUser = null;
 
-        // Login
-        System.out.println("Welcome to the login system!");
-        System.out.print("Enter your username: ");
-        String username = scanner.nextLine();
-        System.out.print("Enter your password: ");
-        String password = scanner.nextLine();
+        while (true) {
+            if (!loggedIn) {
+                // Login
+                System.out.println("Welcome to the login system!");
+                System.out.print("Enter your username: ");
+                String username = scanner.nextLine();
+                System.out.print("Enter your password: ");
+                String password = scanner.nextLine();
 
-        if (authenticate(username, password)) {
-            System.out.println("Login successful!");
-
-            User user = users.get(username); // Get the user object associated with the logged-in username
-            StockExchange exchange = new StockExchange();
-
-            while (true) {
-                System.out.println("Welcome, " + user.getName() + "!");
+                if (authenticate(username, password)) {
+                    System.out.println("Login successful!");
+                    currentUser = users.get(username);
+                    loggedIn = true;
+                } else {
+                    System.out.println("Invalid username or password. Please try again.");
+                }
+            } else {
+                System.out.println("Welcome, " + currentUser.getName() + "!");
                 System.out.println("Choose an option:");
                 System.out.println("1. View Wallet");
                 System.out.println("2. Enter Stock Market");
-                System.out.println("3. Exit");
+                System.out.println("3. Switch Account");
+                System.out.println("4. Exit");
 
                 System.out.print("Enter your choice: ");
                 int choice = scanner.nextInt();
@@ -46,25 +52,25 @@ public class Main {
                 switch (choice) {
                     case 1:
                         // Wallet operations
-                        handleWallet(user, scanner);
+                        handleWallet(currentUser, scanner);
                         break;
                     case 2:
                         // Stock market operations
-                        handleStockMarket(user, exchange, scanner);
+                        handleStockMarket(currentUser, new StockExchange(), scanner);
                         break;
                     case 3:
+                        loggedIn = false;
+                        currentUser = null;
+                        scanner.nextLine(); // Clear the newline character
+                        break;
+                    case 4:
                         System.out.println("Exiting...");
                         scanner.close();
                         System.exit(0);
-                        break;
                     default:
                         System.out.println("Invalid option. Please try again.");
                 }
             }
-        } else {
-            System.out.println("Invalid username or password. Exiting...");
-            scanner.close();
-            System.exit(0);
         }
     }
 
