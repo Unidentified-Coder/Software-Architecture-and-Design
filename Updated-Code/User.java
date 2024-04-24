@@ -28,6 +28,10 @@ public class User {
         ownedStocks.add(stock);
     }
 
+    public void removeStock(Stock stock) {
+        ownedStocks.remove(stock);
+    }
+
     public List<Stock> getOwnedStocks() {
         return ownedStocks;
     }
