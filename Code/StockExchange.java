@@ -7,16 +7,16 @@ public class StockExchange {
     public StockExchange() {
         stocksAvailable = new HashMap<>();
         // Initialize some stocks with current prices and historical prices
-        Stock apple = new Stock("AAPL", 150.00, 0);
-        apple.setHistoricalPrices(new double[]{140.00, 130.00}); // Example historical prices for AAPL
+        Stock apple = new Stock("AAPL", 250.00, 0);
+        apple.setHistoricalPrices(new double[]{210.00, 120.00}); // Example historical prices for AAPL
         stocksAvailable.put("AAPL", apple);
 
-        Stock google = new Stock("GOOGL", 120.00, 0);
-        google.setHistoricalPrices(new double[]{110.00, 100.00}); // Example historical prices for GOOGL
+        Stock google = new Stock("GOOGL", 220.00, 0);
+        google.setHistoricalPrices(new double[]{170.00, 100.00}); // Example historical prices for GOOGL
         stocksAvailable.put("GOOGL", google);
 
-        Stock microsoft = new Stock("MSFT", 100.00, 0);
-        microsoft.setHistoricalPrices(new double[]{90.00, 80.00}); // Example historical prices for MSFT
+        Stock microsoft = new Stock("MSFT", 200.00, 0);
+        microsoft.setHistoricalPrices(new double[]{150.00, 80.00}); // Example historical prices for MSFT
         stocksAvailable.put("MSFT", microsoft);
     }
 
@@ -72,5 +72,32 @@ public class StockExchange {
             System.out.println("Transaction failed: Stock not owned or not available.");
             return false;
         }
+    }
+    public void displayPriceHistory(String symbol) {
+        Stock stock = stocksAvailable.get(symbol);
+        if (stock != null) {
+            double[] prices = stock.getHistoricalPrices();
+            System.out.println("Price History for " + symbol + ":");
+            System.out.println("1 Year Ago: $" + prices[1]);
+            System.out.println("6 Months Ago: $" + prices[0]);
+            System.out.println("Current Price: $" + stock.getPrice());
+            System.out.println("Graph:");
+            for (double price : prices) {
+                System.out.print(drawGraph(price, stock.getPrice()) + "  $" + price + "\n");
+            }
+            System.out.print(drawGraph(stock.getPrice(), stock.getPrice()) + "  $" + stock.getPrice() + "\n");
+        } else {
+            System.out.println("Stock symbol '" + symbol + "' not found.");
+        }
+    }
+
+    private String drawGraph(double historicalPrice, double currentPrice) {
+        StringBuilder graph = new StringBuilder();
+        double priceDifference = currentPrice - historicalPrice;
+        int numStars = (int) (priceDifference / 2); // Each $2 difference represented by a star
+        for (int i = 0; i < numStars; i++) {
+            graph.append("*");
+        }
+        return graph.toString();
     }
 }
