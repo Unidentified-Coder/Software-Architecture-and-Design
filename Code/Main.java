@@ -14,13 +14,14 @@ public class Main {
         userCredentials.put("user3", "password3");
 
         // Add users
-        users.put("user1", new User("John Doe", 100000.00));
-        users.put("user2", new User("Jane Smith", 150000.00));
-        users.put("user3", new User("Alice Johnson", 200000.00));
+        users.put("user1", new User("John Doe", 1000.00));
+        users.put("user2", new User("Jane Smith", 1500.00));
+        users.put("user3", new User("Alice Johnson", 2000.00));
 
         Scanner scanner = new Scanner(System.in);
         boolean loggedIn = false;
         User currentUser = null;
+        StockExchange stockExchange = new StockExchange(); // Instantiate StockExchange
 
         while (true) {
             if (!loggedIn) {
@@ -56,7 +57,7 @@ public class Main {
                         break;
                     case 2:
                         // Stock market operations
-                        handleStockMarket(currentUser, new StockExchange(), scanner);
+                        handleStockMarket(currentUser, stockExchange, scanner); // Pass stockExchange instance
                         break;
                     case 3:
                         loggedIn = false;
@@ -67,6 +68,7 @@ public class Main {
                         System.out.println("Exiting...");
                         scanner.close();
                         System.exit(0);
+                        break;
                     default:
                         System.out.println("Invalid option. Please try again.");
                 }
@@ -144,12 +146,8 @@ public class Main {
                     }
                     System.out.print("Enter quantity to buy: ");
                     int quantityToBuy = scanner.nextInt();
-                    Stock stockToBuy = exchange.getStock(buySymbol);
-                    if (stockToBuy == null) {
-                        System.out.println("Invalid stock symbol.");
-                        break;
-                    }
-                    System.out.println(user.purchaseStock(stockToBuy, quantityToBuy));
+                    System.out.println(exchange.buyStock(buySymbol, quantityToBuy, user) ?
+                                       "Transaction successful!" : "Transaction failed.");
                     break;
                 case 2:
                     // Sell stock
@@ -164,7 +162,8 @@ public class Main {
                     }
                     System.out.print("Enter quantity to sell: ");
                     int quantityToSell = scanner.nextInt();
-                    System.out.println(user.sellStock(sellSymbol, quantityToSell));
+                    System.out.println(exchange.sellStock(sellSymbol, quantityToSell, user) ?
+                                       "Transaction successful!" : "Transaction failed.");
                     break;
                 case 3:
                     System.out.println("Exiting Stock Market...");
@@ -175,4 +174,3 @@ public class Main {
         }
     }
 }
-//a
