@@ -44,8 +44,9 @@ public class Main {
                 System.out.println("Choose an option:");
                 System.out.println("1. View Wallet");
                 System.out.println("2. Enter Stock Market");
-                System.out.println("3. Switch Account");
-                System.out.println("4. Exit");
+                System.out.println("3. View Price History");
+                System.out.println("4. Switch Account");
+                System.out.println("5. Exit");
 
                 System.out.print("Enter your choice: ");
                 int choice = scanner.nextInt();
@@ -60,11 +61,15 @@ public class Main {
                         handleStockMarket(currentUser, stockExchange, scanner); // Pass stockExchange instance
                         break;
                     case 3:
+                        // View price history
+                        viewPriceHistory(stockExchange, scanner);
+                        break;
+                    case 4:
                         loggedIn = false;
                         currentUser = null;
                         scanner.nextLine(); // Clear the newline character
                         break;
-                    case 4:
+                    case 5:
                         System.out.println("Exiting...");
                         scanner.close();
                         System.exit(0);
@@ -172,5 +177,11 @@ public class Main {
                     System.out.println("Invalid option. Please try again.");
             }
         }
+    }
+
+    private static void viewPriceHistory(StockExchange exchange, Scanner scanner) {
+        System.out.println("Enter the symbol of the stock to view its price history:");
+        String symbol = scanner.next().toUpperCase();
+        exchange.displayPriceHistory(symbol);
     }
 }
