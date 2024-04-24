@@ -56,7 +56,7 @@ public class User {
             return "Insufficient funds to purchase " + quantity + " shares of " + stock.getSymbol();
         } else {
             this.balance -= totalPrice;
-            addStock(stock, quantity); // Access private method via public entry point
+            addStock(stock, quantity);
             addToTransactionHistory("Purchased " + quantity + " shares of " + stock.getSymbol() + " at $" + stock.getPrice() + " each");
             return "Successfully purchased " + quantity + " shares of " + stock.getSymbol();
         }
@@ -69,7 +69,7 @@ public class User {
         } else {
             double totalPrice = ownedStock.getPrice() * quantity;
             this.balance += totalPrice;
-            removeStock(symbol, quantity); // Access private method via public entry point
+            removeStock(symbol, quantity);
             addToTransactionHistory("Sold " + quantity + " shares of " + symbol + " at $" + ownedStock.getPrice() + " each");
             return "Successfully sold " + quantity + " shares of " + symbol;
         }
@@ -79,7 +79,16 @@ public class User {
         return transactionHistory;
     }
 
-    private void addStock(Stock stock, int quantity) {
+    public List<Stock> getOwnedStocks() {
+        return new ArrayList<>(ownedStocks.values());
+    }
+
+    public int getStockQuantity(String symbol) {
+        Stock stock = ownedStocks.get(symbol);
+        return (stock != null) ? stock.getQuantity() : 0;
+    }
+
+    public void addStock(Stock stock, int quantity) {
         if (ownedStocks.containsKey(stock.getSymbol())) {
             Stock existingStock = ownedStocks.get(stock.getSymbol());
             existingStock.setQuantity(existingStock.getQuantity() + quantity);
@@ -88,7 +97,7 @@ public class User {
         }
     }
 
-    private void removeStock(String symbol, int quantity) {
+    public void removeStock(String symbol, int quantity) {
         Stock existingStock = ownedStocks.get(symbol);
         if (existingStock != null) {
             if (existingStock.getQuantity() <= quantity) {
@@ -101,14 +110,5 @@ public class User {
 
     private void addToTransactionHistory(String transaction) {
         transactionHistory.add(transaction);
-    }
-
-    public List<Stock> getOwnedStocks() {
-        return new ArrayList<>(ownedStocks.values());
-    }
-
-    public int getStockQuantity(String symbol) {
-        Stock stock = ownedStocks.get(symbol);
-        return (stock != null) ? stock.getQuantity() : 0;
     }
 }
