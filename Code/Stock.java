@@ -1,6 +1,10 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
-public class Stock {
+class Stock {
     private String symbol;
     private double price;
     private int quantity;
@@ -10,8 +14,7 @@ public class Stock {
         this.symbol = symbol;
         this.price = price;
         this.quantity = quantity;
-        // Initialize historical prices
-        this.historicalPrices = new double[2];
+        this.historicalPrices = new double[0]; // Default to an empty array
     }
 
     public String getSymbol() {
@@ -22,8 +25,16 @@ public class Stock {
         return price;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public int getQuantity() {
         return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public double[] getHistoricalPrices() {
@@ -33,12 +44,4 @@ public class Stock {
     public void setHistoricalPrices(double[] historicalPrices) {
         this.historicalPrices = historicalPrices;
     }
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-    @Override
-    public String toString() {
-        return "Stock [symbol=" + symbol + ", price=" + price + ", quantity=" + quantity + "]";
-    }
 }
-

@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Scanner;
 
-public class User {
+class User implements UserInterface, MoneyManagement {
     private String name;
     private double balance;
     private List<String> transactionHistory;
@@ -24,10 +25,12 @@ public class User {
         return balance;
     }
 
+    @Override
     public void setBalance(double balance) {
         this.balance = balance;
     }
 
+    @Override
     public String deposit(double amount) {
         if (amount > 0) {
             this.balance += amount;
@@ -38,6 +41,7 @@ public class User {
         }
     }
 
+    @Override
     public String withdraw(double amount) {
         if (amount > 0 && amount <= this.balance) {
             this.balance -= amount;
@@ -50,37 +54,18 @@ public class User {
         }
     }
 
-    public String purchaseStock(Stock stock, int quantity) {
-        double totalPrice = stock.getPrice() * quantity;
-        if (totalPrice > this.balance) {
-            return "Insufficient funds to purchase " + quantity + " shares of " + stock.getSymbol();
-        } else {
-            this.balance -= totalPrice;
-            addStock(stock, quantity);
-            addToTransactionHistory("Purchased " + quantity + " shares of " + stock.getSymbol() + " at $" + stock.getPrice() + " each");
-            return "Successfully purchased " + quantity + " shares of " + stock.getSymbol();
-        }
+    @Override
+    public List<Stock> getOwnedStocks() {
+        return new ArrayList<>(ownedStocks.values());
     }
 
-    public String sellStock(String symbol, int quantity) {
-        Stock ownedStock = ownedStocks.get(symbol);
-        if (ownedStock == null || ownedStock.getQuantity() < quantity) {
-            return "You do not own enough shares of " + symbol + " to sell.";
-        } else {
-            double totalPrice = ownedStock.getPrice() * quantity;
-            this.balance += totalPrice;
-            removeStock(symbol, quantity);
-            addToTransactionHistory("Sold " + quantity + " shares of " + symbol + " at $" + ownedStock.getPrice() + " each");
-            return "Successfully sold " + quantity + " shares of " + symbol;
-        }
-    }
-
+    // Implementing viewTransactionHistory method
     public List<String> viewTransactionHistory() {
         return transactionHistory;
     }
 
-    public List<Stock> getOwnedStocks() {
-        return new ArrayList<>(ownedStocks.values());
+    private void addToTransactionHistory(String transaction) {
+        transactionHistory.add(transaction);
     }
 
     public int getStockQuantity(String symbol) {
@@ -106,9 +91,5 @@ public class User {
                 existingStock.setQuantity(existingStock.getQuantity() - quantity);
             }
         }
-    }
-
-    private void addToTransactionHistory(String transaction) {
-        transactionHistory.add(transaction);
     }
 }

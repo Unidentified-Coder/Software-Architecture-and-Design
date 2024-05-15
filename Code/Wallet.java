@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Wallet {
+class Wallet implements AccountOverview, SharedFinances {
     private double balance;
     private List<String> transactionHistory;
 
@@ -40,10 +40,12 @@ public class Wallet {
         }
     }
 
-    public List<String> viewHistory() {
+    @Override
+    public List<String> viewTransactionHistory() {
         return transactionHistory;
     }
 
+    @Override
     public String viewBalance() {
         return "Current balance: $" + balance;
     }
